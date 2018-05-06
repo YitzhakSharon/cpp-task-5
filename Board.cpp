@@ -1,7 +1,6 @@
 #include <iostream>
 #include <exception>
 #include "/home/yitzhak/Desktop/cpp3/Board.h"
-#include "Point.h"
 using namespace std;
 
 Board:: Board(int num1){
@@ -27,8 +26,8 @@ ostream& operator << (ostream& os,Board& c){
     return os;
 }
 
-char& Board::operator [] (Point p){
-    if(p.x<num && p.y<num && p.x>=0 && p.y>=0 && game[p.x][p.y]=='.')
+char& Board::operator [] (Coordinate p){
+    if(p.x<num && p.y<num && p.x>=0 && p.y>=0 )
         return game[p.x][p.y];
     else
         cout<<"problem"<<endl;
