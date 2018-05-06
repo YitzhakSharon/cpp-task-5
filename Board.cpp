@@ -1,7 +1,7 @@
 #include <iostream>
 #include <exception>
 #include "/home/yitzhak/Desktop/cpp3/Board.h"
-
+#include "Point.h"
 using namespace std;
 
 Board:: Board(int num1){
@@ -17,30 +17,43 @@ Board:: Board(int num1){
     }
 }
 
-
-void Board ::insert(int i, int j, char c){
-    if(i>0 && i<this->num && (c=='O' || c=='X'))
-        game[i][j]=c;
-}
-
-
-void Board :: printGame(){
-    for(int i=0 ; i<this->num ; i++){
-        for(int j=0 ; j<this->num ; j++){
-            cout<<game[i][j];
+ostream& operator << (ostream& os,Board& c){
+    for(int i=0 ; i<c.num ; i++){
+        for(int j=0 ; j<c.num ; j++){
+            os<<c.game[i][j];
         }
-        cout<<endl;
+    os<<'\n';
     }
-    cout<<endl;
+    return os;
 }
 
+char& Board::operator [] (Point p){
+    if(p.x<num && p.y<num && p.x>=0 && p.y>=0 && game[p.x][p.y]=='.')
+        return game[p.x][p.y];
+    else
+        cout<<"problem"<<endl;
+       // throw "iliggaal expthions";
+return game[p.x][p.y];
+ 
+}
+
+Board& Board:: operator = (char c){
+    if(c=='.'){
+        for(int i=0; i<this->num; i++){
+            for(int j=0; j<this->num; j++){
+                this->game[i][j]='.';
+            }
+        }
+    }
+    // else throw exptions
+    else
+        cout << "wrong caracter"<<endl;
+    return *this;
+}
 
 int main(){
-
     Board a (3);
-    a.printGame();
-    a.insert(1,1,'X');
-    a.printGame();
-
+    cout<<a<<endl;
+    a[{1,1}]='X';
     return 0;
 }
