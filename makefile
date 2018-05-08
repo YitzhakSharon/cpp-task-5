@@ -3,7 +3,7 @@ CXX =g++ -std=c++17
 
 all:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
 
-Board.o: Board.cpp Board.h
+Board.o: Board.h Board.cpp
 	$(CXX) -c Board.cpp -o Board.o
 
 Character.o: Character.h Character.cpp
