@@ -6,16 +6,16 @@ all:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o C
 Board.o: Board.cpp Board.h
 	$(CXX) -c Board.cpp -o Coordinate.o
 
-Character.o: Character.hpp
-	$(CXX) -c Character.hpp -o Coordinate.o
+Character.o: Character.h Character.cpp
+	$(CXX) -c Character.cpp -o Coordinate.o
 
-Coordinate.o:Coordinate.hpp
-	$(CXX) -c Coordinate.hpp -o Coordinate.o
+Coordinate.o:Coordinate.h Coordinate.cpp
+	$(CXX) -c Coordinate.cpp -o Coordinate.o
 
-IllegalCharException.o: IllegalCharException.hpp IllegalCharException.cpp
+IllegalCharException.o: IllegalCharException.h IllegalCharException.cpp
 	$(CXX) -c IllegalCharException.cpp -o IllegalCharException.o
 
-IllegalCoordinateException.o: IllegalCoordinateException.hpp IllegalCoordinateException.cpp
+IllegalCoordinateException.o: IllegalCoordinateException.h IllegalCoordinateException.cpp
 	$(CXX) -c IllegalCoordinateException.cpp -o IllegalCoordinateException.o
 
 Clean:

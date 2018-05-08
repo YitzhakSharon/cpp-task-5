@@ -1,4 +1,4 @@
-#include "IllegalCoordinateException.hpp"
+#include "IllegalCoordinateException.h"
 #include <string>
 using namespace std;
 

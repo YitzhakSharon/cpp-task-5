@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Character.hpp"
-#include "IllegalCoordinateException.hpp"
-#include "IllegalCharException.hpp"
+#include "Character.h"
+#include "IllegalCoordinateException.h"
+#include "IllegalCharException.h"
 
 using namespace std;
 

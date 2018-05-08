@@ -1,4 +1,4 @@
-#include "IllegalCharException.hpp"
+#include "IllegalCharException.h"
 using namespace std;
 
 char IllegalCharException::theChar() const{
