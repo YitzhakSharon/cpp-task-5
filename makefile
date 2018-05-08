@@ -1,7 +1,7 @@
 CXX =g++ -std=c++17
 
 
-a.out: Board.h Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
+all: Board.h Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
 
 Board.o: Board.cpp Board.h
 	$(CXX) -c Board.cpp
