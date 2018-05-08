@@ -4,10 +4,10 @@ CXX =g++ -std=c++17
 all:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
 
 Board.o: Board.cpp Board.h
-	$(CXX) -c Board.cpp -o Coordinate.o
+	$(CXX) -c Board.cpp -o Board.o
 
 Character.o: Character.h Character.cpp
-	$(CXX) -c Character.cpp -o Coordinate.o
+	$(CXX) -c Character.cpp -o Character.o
 
 Coordinate.o:Coordinate.h Coordinate.cpp
 	$(CXX) -c Coordinate.cpp -o Coordinate.o
