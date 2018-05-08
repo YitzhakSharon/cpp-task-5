@@ -1,20 +1,20 @@
 #pragma once
 #include <iostream>
-//#include "Coordinate.hpp"
+#include "Character.hpp"
 #include "IllegalCoordinateException.hpp"
-#include "IllegalCharException.hpp"
+//#include "IllegalCharException.hpp"
 
 using namespace std;
 
 class Board{
     public:
         int num;
-        char** board;
+        Character** board;
     public:
         Board(int num1):num(num1){
-            char** b = new char*[this->num];
+            Character** b = new Character*[this->num];
             for (int i = 0; i < this->num; i++)
-                b[i] = new char[num];
+                b[i] = new Character[num];
 
             for(int i=0; i<this->num; i++){
                 for(int j=0; j<this->num; j++){
@@ -23,10 +23,22 @@ class Board{
             }
             this->board = b;
         };
-        // Board(int num1);
-        Board(){};
+
+        Board():num(2){
+            Character** b = new Character*[this->num];
+            for (int i = 0; i < this->num; i++)
+                b[i] = new Character[num];
+
+            for(int i=0; i<this->num; i++){
+                for(int j=0; j<this->num; j++){
+                    b[i][j]='.';
+                }
+            }
+            this->board = b;
+        };
+
         Board(const Board& b);
-        char& operator [] (Coordinate);
+        Character& operator [] (Coordinate);
         Board& operator =(char);
         Board& operator = (const Board& b);
         ~Board();

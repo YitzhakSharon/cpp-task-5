@@ -5,9 +5,9 @@ using namespace std;
 
 Board::Board(const Board& b){
     num = b.num;
-    char** temp = new char*[num];
+    Character** temp = new Character*[num];
     for(int i = 0 ; i < num ; i++)
-        temp[i] = new char[num];
+        temp[i] = new Character[num];
     
     for(int i=0;i<this->num;i++){
         for(int j=0; j<this->num;j++){
@@ -34,9 +34,10 @@ ostream& operator << (ostream& os,Board& c){
     return os;
 }
 
-char& Board::operator [](Coordinate p){
-    if(p.x<num && p.y<num && p.x>=0 && p.y>=0 )
+Character& Board::operator [](Coordinate p){
+    if(p.x<num && p.y<num && p.x>=0 && p.y>=0){        
         return board[p.x][p.y];
+    }
     else
         throw IllegalCoordinateException(p);
 }
@@ -55,19 +56,20 @@ Board& Board::operator = (char c){
         throw IllegalCharException(c);
 }
 
-// Board& Board::operator = (const Board& b){
-//     this->num=b.num;
-//      char** temp = new char*[num];
-//     for(int i = 0 ; i < num ; i++)
-//         temp[i] = new char[num];
+Board& Board::operator = (const Board& b){
+    this->num=b.num;
+     Character** temp = new Character*[num];
+    for(int i = 0 ; i < num ; i++)
+        temp[i] = new Character[num];
     
-//     for(int i=0;i<this->num;i++){
-//         for(int j=0; j<this->num;j++){
-//             temp[i][j]=b.board[i][j];
-//         }
-//     }
-//     this->board=temp;
-// }
+    for(int i = 0;i<this->num;i++){
+        for(int j = 0; j<this->num;j++){
+            temp[i][j]=b.board[i][j];
+        }
+    }
+    this->board=temp;
+    return (*this);
+}
 
 int main(){
 	Board board1{4};  // Initializes a 4x4 board
@@ -112,14 +114,14 @@ int main(){
 	Board board2 = board1;
 	board2[{0,0}] = 'X';
 	cout << board1 << endl;  /* Shows an empty board, as above */
-	//cout << board2 << endl;  /* Shows a board with an X at top-left */
+	cout << board2 << endl;  /* Shows a board with an X at top-left */
 
-	// board1 = board2;
-	// board1[{3,3}] = 'O';
-	// cout << board2 << endl;  /* Shows a board with an X at top-left */
-	// cout << board1 << endl;  /* Shows a board with an X at top-left and O at bottom-right */
+	board1 = board2;
+	board1[{3,3}] = 'O';
+	cout << board2 << endl;  /* Shows a board with an X at top-left */
+	cout << board1 << endl;  /* Shows a board with an X at top-left and O at bottom-right */
 
-	// cout << "Good bye!" << endl;
+	 cout << "Good bye!" << endl;
 
 return 0;
 }
