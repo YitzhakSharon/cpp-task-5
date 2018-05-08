@@ -1,4 +1,4 @@
-CXX =g++ -std=c++17
+CXX =g++ -std=c++14
 
 
 all:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
