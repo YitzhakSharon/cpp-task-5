@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Character.hpp"
 #include "IllegalCoordinateException.hpp"
-//#include "IllegalCharException.hpp"
+#include "IllegalCharException.hpp"
 
 using namespace std;
 
