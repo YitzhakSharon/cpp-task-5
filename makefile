@@ -12,11 +12,11 @@ Character.o: Character.hpp
 Coordinate.o:Coordinate.hpp
 	$(CXX) -c Coordinate.hpp -o Coordinate.o
 
-IllegalCharException.o:IllegalCharException.hpp IllegalCharException.cpp
+IllegalCharException.o: IllegalCharException.hpp IllegalCharException.cpp
 	$(CXX) -c IllegalCharException.cpp -o IllegalCharException.o
 
-IllegalCoordinateException.o:IllegalCoordinateException.hpp IllegalCoordinateException.cpp
-	$(CXX) -c IllegalCoordinateException.cpp - o IllegalCoordinateException.o
+IllegalCoordinateException.o: IllegalCoordinateException.hpp IllegalCoordinateException.cpp
+	$(CXX) -c IllegalCoordinateException.cpp -o IllegalCoordinateException.o
 
 Clean:
 	rm*.o a.out

@@ -11,7 +11,7 @@ public:
             this->c=t;
         else{
             this->c='.';
-            throw IllegalCharException((char)t);
+            throw IllegalCharException(t);
         }
     };
     operator char(){
