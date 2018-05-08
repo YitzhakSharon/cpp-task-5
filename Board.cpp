@@ -1,58 +1,125 @@
-#include <iostream>
-#include <exception>
-#include "/home/yitzhak/Desktop/cpp3/Board.h"
+#include "Board.h"
 using namespace std;
 
-Board:: Board(int num1){
-    this->num=num1;
-    this->game= new char*[num1];
-    for (int i = 0; i < this->num; ++i)
-        this->game[i] = new char[this->num];
 
-    for(int i=0; i<this->num; i++){
-        for(int j=0; j<this->num; j++){
-            this->game[i][j]='.';
+
+Board::Board(const Board& b){
+    num = b.num;
+    char** temp = new char*[num];
+    for(int i = 0 ; i < num ; i++)
+        temp[i] = new char[num];
+    
+    for(int i=0;i<this->num;i++){
+        for(int j=0; j<this->num;j++){
+            temp[i][j]=b.board[i][j];
         }
     }
+    this->board=temp;
+}
+
+Board::~Board()
+{
+    for(int i = 0 ; i < num ; i++)
+        delete board[i];
+    delete board;
 }
 
 ostream& operator << (ostream& os,Board& c){
     for(int i=0 ; i<c.num ; i++){
         for(int j=0 ; j<c.num ; j++){
-            os<<c.game[i][j];
+            os<<c.board[i][j];
         }
     os<<'\n';
     }
     return os;
 }
 
-char& Board::operator [] (Coordinate p){
+char& Board::operator [](Coordinate p){
     if(p.x<num && p.y<num && p.x>=0 && p.y>=0 )
-        return game[p.x][p.y];
+        return board[p.x][p.y];
     else
-        cout<<"problem"<<endl;
-       // throw "iliggaal expthions";
-return game[p.x][p.y];
- 
+        throw IllegalCoordinateException(p);
 }
 
-Board& Board:: operator = (char c){
-    if(c=='.'){
+Board& Board::operator = (char c){
+    if(c=='.' || c=='X' || c=='O'){
         for(int i=0; i<this->num; i++){
             for(int j=0; j<this->num; j++){
-                this->game[i][j]='.';
+                this->board[i][j]=c;
             }
         }
+        return (*this);
     }
-    // else throw exptions
+    
     else
-        cout << "wrong caracter"<<endl;
-    return *this;
+        throw IllegalCharException(c);
 }
 
+// Board& Board::operator = (const Board& b){
+//     this->num=b.num;
+//      char** temp = new char*[num];
+//     for(int i = 0 ; i < num ; i++)
+//         temp[i] = new char[num];
+    
+//     for(int i=0;i<this->num;i++){
+//         for(int j=0; j<this->num;j++){
+//             temp[i][j]=b.board[i][j];
+//         }
+//     }
+//     this->board=temp;
+// }
+
 int main(){
-    Board a (3);
-    cout<<a<<endl;
-    a[{1,1}]='X';
-    return 0;
+	Board board1{4};  // Initializes a 4x4 board
+	cout << board1 << endl;   /* Shows an empty board:
+	....
+	....
+	....
+	....
+	*/
+	cout << board1[{1,2}] << endl; // .
+	board1[{1,1}]='X';
+	board1[{1,2}]='O';
+	char c = board1[{1,2}];
+    cout << c << endl; // O
+	 cout << board1 << endl;  /* Shows the following board:
+	// ....
+	// .XO.
+	// ....
+	// ....
+	// */
+
+	try {
+		board1[{3,4}]='O';   // This should raise an exception
+	} catch (const IllegalCoordinateException& ex) {
+		cout << "Illegal coordinate: " << ex.theCoordinate() << endl;  // prints "Illegal coordinate: 3,4"
+	}
+
+	board1 = '.';     // Fill the entire board with "."
+	cout << board1 << endl;  /* Shows an empty board, as above */
+	try { 
+		board1 = 'a';        // This should raise an exception
+	} catch (const IllegalCharException& ex) {
+		cout << "Illegal char: " << ex.theChar() << endl;  // "Illegal char: a"
+	}
+
+	try {
+		board1[{0,1}] = 'x';  // This should raise an exception
+	} catch (const IllegalCharException& ex) {
+		cout << "Illegal char: " << ex.theChar() << endl;  // "Illegal char: x"
+	}
+
+	Board board2 = board1;
+	board2[{0,0}] = 'X';
+	cout << board1 << endl;  /* Shows an empty board, as above */
+	//cout << board2 << endl;  /* Shows a board with an X at top-left */
+
+	// board1 = board2;
+	// board1[{3,3}] = 'O';
+	// cout << board2 << endl;  /* Shows a board with an X at top-left */
+	// cout << board1 << endl;  /* Shows a board with an X at top-left and O at bottom-right */
+
+	// cout << "Good bye!" << endl;
+
+return 0;
 }
