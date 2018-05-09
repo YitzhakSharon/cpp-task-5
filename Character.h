@@ -14,7 +14,7 @@ public:
             throw IllegalCharException(t);
         }
     };
-    operator char(){
+    operator char() const{
         return this->c;
     };
     
