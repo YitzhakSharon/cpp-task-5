@@ -24,12 +24,12 @@ Board::~Board()
     delete board;
 }
 
-ostream& operator << (ostream& os,Board& c){
+ostream& operator << (ostream& os,const Board& c){
     for(int i=0 ; i<c.num ; i++){
         for(int j=0 ; j<c.num ; j++){
             os<<c.board[i][j];
         }
-    os<<'\n';
+            os<<'\n';
     }
     return os;
 }

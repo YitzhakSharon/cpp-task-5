@@ -42,5 +42,5 @@ class Board{
         Board& operator =(char);
         Board& operator = (const Board& b);
         ~Board();
-friend ostream& operator << (ostream& os,Board& c);
+friend ostream& operator << (ostream& os,const Board& c);
 };
