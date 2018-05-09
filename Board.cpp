@@ -29,6 +29,7 @@ ostream& operator << (ostream& os, const Board& c){
         for(int j=0 ; j<c.num ; j++){
             os<<c.board[i][j];
         }
+        if(i!=c.num-1)
             os<<endl;
     }
     return os;
