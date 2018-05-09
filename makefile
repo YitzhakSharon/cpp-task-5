@@ -1,7 +1,7 @@
 CXX =g++ -std=c++14
 
 
-a.out:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
+all:  Board.o IllegalCharException.o IllegalCoordinateException.o Coordinate.o Character.o
 	$(CCX) main.cpp *.o
 
 Board.o: Board.h Board.cpp
