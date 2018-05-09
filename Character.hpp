@@ -6,7 +6,7 @@ public:
     Character(){
         this->c='.';
     };
-    Character(char t){
+    Character(const char t){
         if(t=='.' || t=='X' || t=='O')
             this->c=t;
         else{
