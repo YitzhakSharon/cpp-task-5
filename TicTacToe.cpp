@@ -12,39 +12,74 @@ void TicTacToe:: play(Player& one, Player& two){
   tow.myChar='O';
   int turn=0;
   bool win=false;
-  bool exception=false;
+  // bool exception=false;
   while(!win){
     if(turn==0){
-        try{
-          this->board[one.play()]=one.myChar;
-
-         } catch (const IllegalCoordinateException& ex) {
-           this->win=two;
-           break;
+      try{
+        this->board[one.play()]=one.myChar;
+      }catch (const IllegalCoordinateException& ex) {
+          *(this->win)=two;
+          break;
          	cout << "Illegal Action: " << one.name() << endl;  // prints "Illegal coordinate: 3,4"
-         }
-
-
-
-
-
-
-
+      }
+      if(check_win(one.myChar)){
+        win = true;
+        *(this->win) = one;
+      }
       turn=1;
     }
     else{
-
+      try{
+        this->board[two.play()]=two.myChar;
+      }catch (const IllegalCoordinateException& ex) {
+          *(this->win)=one;
+          break;
+         	cout << "Illegal Action: " << two.name() << endl;  // prints "Illegal coordinate: 3,4"
+      }
+      if(check_win(two.myChar)){
+        win = true;
+        *(this->win) = two;
+      }
       turn=0;
     }
 
   }
-
-
-
-
-
 }
 
 bool TicTacToe:: check_win(Character a){
-  this->
+  int counuter = 0;
+  for (int i; i<this->num; i++){
+    // while (counter<=this->num && counter>=0){
+    //   if(this->board[{i,i}] == a){
+    //     counter ++;
+    //   }
+    //   else{
+    //     counter --;
+    //   }
+    // }
+    for(int j=0; j<this->num; i++){
+      if(this->board[{i,j}] == a){
+         counter ++;
+       }
+       else{
+         counter --;
+       }
+    }
+    if (counter == this->num){
+      return true;
+    }
+  }
+  for (int i=0; i<this->num; i++){
+    if(this->board[{i,i}] == a){
+        counter ++;
+    }
+    else{
+      counter --;
+    }
+  }
+  if (counter == this->num){
+    return true;
+  }
+  return false;
 }
+
