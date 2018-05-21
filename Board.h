@@ -8,7 +8,7 @@ using namespace std;
 
 class Board{
     public:
-        int num;
+        uint num;
         Character** board;
     public:
         Board(int num1):num(num1){
@@ -36,9 +36,9 @@ class Board{
             }
             this->board = b;
         };
-
+        const int size() const;
         Board(const Board& b);
-        Character& operator [] (Coordinate);
+        Character& operator [] (Coordinate) const;
         Board& operator =(char);
         Board& operator = (const Board& b);
         ~Board();
