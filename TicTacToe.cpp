@@ -6,6 +6,10 @@ TicTacToe :: TicTacToe(int num){
   this->board= Board(num);
   this->num=(uint)num;
 }
+const Board& TicTacToe:: board(){return this->board;}
+Player& TicTacToe:: winner()const {return this->win;}
+
+
 
 void TicTacToe:: play(Player& one, Player& two){
   one.myChar='X';
@@ -19,9 +23,11 @@ void TicTacToe:: play(Player& one, Player& two){
         this->board[one.play()]=one.myChar;
       }catch (const IllegalCoordinateException& ex) {
           *(this->win)=two;
+         	cout << "Illegal Action: " << one.name() << endl;
           break;
-         	cout << "Illegal Action: " << one.name() << endl;  // prints "Illegal coordinate: 3,4"
+
       }
+
       if(check_win(one.myChar)){
         win = true;
         *(this->win) = one;
@@ -33,8 +39,9 @@ void TicTacToe:: play(Player& one, Player& two){
         this->board[two.play()]=two.myChar;
       }catch (const IllegalCoordinateException& ex) {
           *(this->win)=one;
+         	cout << "Illegal Action: " << two.name() << endl;
           break;
-         	cout << "Illegal Action: " << two.name() << endl;  // prints "Illegal coordinate: 3,4"
+
       }
       if(check_win(two.myChar)){
         win = true;
@@ -48,38 +55,34 @@ void TicTacToe:: play(Player& one, Player& two){
 
 bool TicTacToe:: check_win(Character a){
   int counuter = 0;
-  for (int i; i<this->num; i++){
-    // while (counter<=this->num && counter>=0){
-    //   if(this->board[{i,i}] == a){
-    //     counter ++;
-    //   }
-    //   else{
-    //     counter --;
-    //   }
-    // }
-    for(int j=0; j<this->num; i++){
-      if(this->board[{i,j}] == a){
+  for (int i=0; i<this->num; i++){
+      if(this->board[{i,i}] == a)
          counter ++;
-       }
-       else{
-         counter --;
-       }
     }
+
     if (counter == this->num){
       return true;
-    }
-  }
+
+  counter=0;
   for (int i=0; i<this->num; i++){
-    if(this->board[{i,i}] == a){
+    for(int j=0; j<this->num;j++){
+    if(this->board[{i,j}] == a)
         counter ++;
     }
-    else{
-      counter --;
+    if(counter==this->num)
+        return true;
+    else
+      counter=0;
     }
-  }
-  if (counter == this->num){
-    return true;
-  }
-  return false;
-}
 
+counter=0;
+for (int i=0; i<this->num; i++){
+  for(int j=0; j<this->num;j++){
+    if(this->board[{j,i}] == a)
+        counter ++;
+    }
+    if(counter==this->num)
+        return true;
+    else
+      counter=0;
+    }

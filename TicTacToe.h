@@ -1,3 +1,4 @@
+
 #include "Board.h"
 #include "Player.h"
 class TicTacToe{
@@ -5,10 +6,11 @@ class TicTacToe{
 public:
   uint num;
   Board board;
-  Player* win;
+  Player win;
   TicTacToe(int num);
   void play(Player& one, Player& tow);
-  Player& winner ();
+  const Player& winner () const;
   bool check_win(Character a);
-  void board();
+  const Board& board();
+
 };

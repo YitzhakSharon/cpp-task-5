@@ -12,6 +12,7 @@ class XYPlayer: public Player {
 public:
 	const string name() const override { return "XYPlayer"; }
 	const Coordinate play(const Board& board) override;
+	const Character getChar() const override;
 };
 
 
@@ -23,6 +24,10 @@ class YXPlayer: public Player {
 public:
 	const string name() const override { return "YXPlayer"; }
 	const Coordinate play(const Board& board) override;
+	const Character getChar() const override;
+
+
+
 };
 
 
@@ -35,6 +40,9 @@ class IllegalPlayer: public Player {
 public:
 	const string name() const override { return "YXPlayer"; }
 	const Coordinate play(const Board& board) override;
+	const Character getChar() const override;
+
+
 };
 
 
@@ -46,4 +54,7 @@ class ExceptionPlayer: public Player {
 public:
 	const string name() const override { return "YXPlayer"; }
 	const Coordinate play(const Board& board) override;
+	const Character getChar() const override;
+
+
 };

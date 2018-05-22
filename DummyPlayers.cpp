@@ -1,5 +1,10 @@
 #include "DummyPlayers.h"
 
+Character XYPlayer:: getChar()const {return  this->myChar;}
+Character YXPlayer:: getChar()const {return  this->myChar;}
+Character IllegalPlayer:: getChar() const {return this->myChar;}
+Character ExceptionPlayer:: getChar() const {return this->myChar;}
+
 
 const Coordinate XYPlayer::play(const Board& board) {
 	for (uint x=0; x<board.size(); ++x) {
