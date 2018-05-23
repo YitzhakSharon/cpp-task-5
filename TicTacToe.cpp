@@ -18,17 +18,21 @@ void TicTacToe:: play(Player& one, Player& two){
   bool win=false;
   while(!win){
     if(turn==0){
-      Coordinate t=one.play(this->b);
       try{
+        Coordinate t=one.play(this->b);
+        //cout<<"Chep"<< t.x<<" "<<t.y<<endl;
         if(this->b[t]!='.'){
-          win =true;
           this->win=&two;
+            win =true;
+
           throw IllegalCharException(b[t]);
         }
         else
           this->b[t]=one.myChar;
 
       }catch (...) {
+        this->win=&two;
+          win =true;
          	cout << "Illegal Action: " << one.name() << endl;
           break;
       }
@@ -42,18 +46,23 @@ void TicTacToe:: play(Player& one, Player& two){
       turn=1;
     }
     else{
-      Coordinate t = two.play(this->b);
       try{
+        Coordinate t = two.play(this->b);
+      //  cout<<"XY"<< t.x<<" "<<t.y<<endl;
+
         if(this->b[t]!='.'){
-          win =true;
           this->win=&one;
-        throw IllegalCharException(b[t]);
+            win =true;
+
+          throw IllegalCharException(b[t]);
         }
         else
           this->b[t]=two.myChar;
 
       }catch (...) {
-        cout<< "la"<<endl;
+        this->win=&one;
+          win =true;
+
          	cout << "Illegal Action: " << two.name() << endl;
           break;
       }
@@ -79,6 +88,18 @@ bool TicTacToe:: check_win(Character a){
 
     if (counter == this->num)
       return true;
+counter=0;
+
+  int i=this->num-1;
+  int j=0;
+  while (i>=0) {
+      if(this->b[{i,j}]==a)
+        counter++;
+      i--;
+      j++;
+  }
+  if (counter == this->num)
+    return true;
 
   counter=0;
   for (int i=0; i<this->num; i++){
