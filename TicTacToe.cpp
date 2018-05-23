@@ -80,6 +80,7 @@ void TicTacToe:: play(Player& one, Player& two){
 }
 
 bool TicTacToe:: check_win(Character a){
+  // check slnat
   int counter = 0;
   for (int i=0; i<this->num; i++){
       if(this->b[{i,i}] == a)
@@ -101,11 +102,30 @@ counter=0;
   if (counter == this->num)
     return true;
 
+// check win in row
   counter=0;
   for (int i=0; i<this->num; i++){
     for(int j=0; j<this->num;j++){
     if(this->b[{i,j}] == a)
         counter ++;
+    }
+    else
+      break;
+    if(counter==this->num)
+        return true;
+    else
+      counter=0;
+    }
+
+//check win in culom
+counter=0;
+for (int i=0; i<this->num; i++){
+  for(int j=0; j<this->num;j++){
+    if(this->b[{j,i}] == a)
+        counter ++;
+    }
+    else{
+      break;
     }
     if(counter==this->num)
         return true;
@@ -113,16 +133,5 @@ counter=0;
       counter=0;
     }
 
-counter=0;
-for (int i=0; i<this->num; i++){
-  for(int j=0; j<this->num;j++){
-    if(this->b[{j,i}] == a)
-        counter ++;
-    }
-    if(counter==this->num)
-        return true;
-    else
-      counter=0;
-    }
 return false;
 }
