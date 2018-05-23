@@ -17,10 +17,9 @@ const  Player& TicTacToe:: winner() const {
 void TicTacToe:: play(Player& one, Player& two){
   one.myChar='X';
   two.myChar='O';
-  uint counter = 0;
   int turn=0;
   bool win=false;
-  while(!win && counter<(this->num)*2){
+  while(!win){
     if(turn==0){
       try{
         Coordinate t=one.play(this->b);
@@ -31,9 +30,8 @@ void TicTacToe:: play(Player& one, Player& two){
 
           throw IllegalCharException(b[t]);
         }
-        else{
+        else
           this->b[t]=one.myChar;
-        }
 
       }catch (...) {
         this->win=&two;
@@ -60,9 +58,8 @@ void TicTacToe:: play(Player& one, Player& two){
 
           throw IllegalCharException(b[t]);
         }
-        else{
+        else
           this->b[t]=two.myChar;
-        }
 
           if(check_win(two.myChar)){
               win = true;
@@ -81,14 +78,6 @@ void TicTacToe:: play(Player& one, Player& two){
 
     }
   }
-  for (int i=0; i<this->num; i++){
-    for (int j=0; j<this->num; j++){
-      if (this->b[{i,j}]!='.')
-        couter++;
-    }
-  }
-  if(counter == (this->num)*2)
-    this->win = &two;
 }
 
 bool TicTacToe:: check_win(Character a){
