@@ -20,7 +20,7 @@ void TicTacToe:: play(Player& one, Player& two){
     if(turn==0){
       try{
         Coordinate t=one.play(this->b);
-        //cout<<"Chep"<< t.x<<" "<<t.y<<endl;
+        cout<<"Chep"<< t.x<<" "<<t.y<<endl;
         if(this->b[t]!='.'){
           this->win=&two;
             win =true;
@@ -31,6 +31,7 @@ void TicTacToe:: play(Player& one, Player& two){
           this->b[t]=one.myChar;
 
       }catch (...) {
+        cout<<"1111"<<endl;
         this->win=&two;
           win =true;
          	cout << "Illegal Action: " << one.name() << endl;
@@ -59,6 +60,12 @@ void TicTacToe:: play(Player& one, Player& two){
         else
           this->b[t]=two.myChar;
 
+          if(check_win(two.myChar)){
+              win = true;
+              this->win=&two;
+              break;
+          }
+
       }catch (...) {
         this->win=&one;
           win =true;
@@ -67,11 +74,6 @@ void TicTacToe:: play(Player& one, Player& two){
           break;
       }
 
-      if(check_win(two.myChar)){
-          win = true;
-          this->win=&two;
-          break;
-      }
       turn=0;
 
     }

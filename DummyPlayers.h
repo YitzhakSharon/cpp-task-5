@@ -37,7 +37,7 @@ public:
 */
 class IllegalPlayer: public Player {
 public:
-	const string name() const override { return "YXPlayer"; }
+	const string name() const override { return "IllegalPlayer"; }
 	const Coordinate play(const Board& board) override;
 
 
@@ -50,7 +50,7 @@ public:
 */
 class ExceptionPlayer: public Player {
 public:
-	const string name() const override { return "YXPlayer"; }
+	const string name() const override { return "ExceptionPlayer"; }
 	const Coordinate play(const Board& board) override;
 
 

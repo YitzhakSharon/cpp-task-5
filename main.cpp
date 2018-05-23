@@ -69,7 +69,7 @@ int main() {
         And the winner is XYPlayer, playing as O!
 	*/
 
-	//playAndPrintResults(game, player2, player4);
+//	playAndPrintResults(game, player2, player4);
 	/*
 		The final board is
 		X...
@@ -79,7 +79,7 @@ int main() {
 		And the winner is YXPlayer, playing as X!
 	*/
 
-//	playAndPrintResults(game, player4, player2);
+	playAndPrintResults(game, player4, player2);
 	/*
 		The final board is
 		....
