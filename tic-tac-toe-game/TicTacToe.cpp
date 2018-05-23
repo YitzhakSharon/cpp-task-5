@@ -15,7 +15,7 @@ void TicTacToe:: play(Player& one, Player& two){
   one.myChar='X';
   tow.myChar='O';
   int counter = 0;
-  int turn=0;
+  int turn=0; 
   bool win=false;
   // bool exception=false;
   while(!win && counter<(this->num)*2){
