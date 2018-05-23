@@ -108,9 +108,9 @@ counter=0;
     for(int j=0; j<this->num;j++){
     if(this->b[{i,j}] == a)
         counter ++;
-    }
     else
       break;
+  }
     if(counter==this->num)
         return true;
     else
@@ -123,8 +123,7 @@ for (int i=0; i<this->num; i++){
   for(int j=0; j<this->num;j++){
     if(this->b[{j,i}] == a)
         counter ++;
-    }
-    else{
+    else
       break;
     }
     if(counter==this->num)
