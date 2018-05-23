@@ -42,15 +42,15 @@ ostream& operator << (ostream& os, const Board& c){
         throw IllegalCoordinateException(p);
 }
 
-Board& Board::operator = (char c){
-    if(c=='.' || c=='X' || c=='O'){
+void Board::operator = (char c) const {
+    if(c=='.'){
         Character temp(c);
         for(int i=0; i<this->num; i++){
             for(int j=0; j<this->num; j++){
                 this->board[i][j]=temp;
             }
         }
-        return (*this);
+      //  return (*this);
     }
 
     else

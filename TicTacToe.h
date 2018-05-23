@@ -12,5 +12,7 @@ public:
   const Player& winner () const;
   bool check_win(Character a);
   const Board& board()const;
+  void  clean ();
+
 
 };

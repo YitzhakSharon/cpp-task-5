@@ -39,7 +39,7 @@ class Board{
         const int size() const;
         Board(const Board& b);
         Character& operator [] (Coordinate) const;
-        Board& operator =(char);
+        void operator =(char) const;
         Board& operator = (const Board& b);
         ~Board();
         friend ostream& operator << (ostream& os,const Board& c);

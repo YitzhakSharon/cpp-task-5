@@ -22,6 +22,7 @@ void TicTacToe:: play(Player& one, Player& two){
         Coordinate t=one.play(this->b);
         cout<<"Chep"<< t.x<<" "<<t.y<<endl;
         if(this->b[t]!='.'){
+          clean();
           this->win=&two;
             win =true;
 
@@ -31,7 +32,7 @@ void TicTacToe:: play(Player& one, Player& two){
           this->b[t]=one.myChar;
 
       }catch (...) {
-        cout<<"1111"<<endl;
+        clean();
         this->win=&two;
           win =true;
          	cout << "Illegal Action: " << one.name() << endl;
@@ -39,7 +40,7 @@ void TicTacToe:: play(Player& one, Player& two){
       }
 
       if(check_win(one.myChar)){
-        cout<<"enter "<<endl;
+        clean();
           win = true;
           this->win=&one;
           break;
@@ -52,6 +53,7 @@ void TicTacToe:: play(Player& one, Player& two){
       //  cout<<"XY"<< t.x<<" "<<t.y<<endl;
 
         if(this->b[t]!='.'){
+          clean();
           this->win=&one;
             win =true;
 
@@ -61,6 +63,7 @@ void TicTacToe:: play(Player& one, Player& two){
           this->b[t]=two.myChar;
 
           if(check_win(two.myChar)){
+            clean();
               win = true;
               this->win=&two;
               break;
@@ -69,7 +72,7 @@ void TicTacToe:: play(Player& one, Player& two){
       }catch (...) {
         this->win=&one;
           win =true;
-
+          clean();
          	cout << "Illegal Action: " << two.name() << endl;
           break;
       }
@@ -78,7 +81,6 @@ void TicTacToe:: play(Player& one, Player& two){
 
     }
   }
-
 }
 
 bool TicTacToe:: check_win(Character a){
@@ -135,4 +137,11 @@ for (int i=0; i<this->num; i++){
     }
 
 return false;
+}
+void TicTacToe:: clean(){
+  for(int i=0;i<this->num; i++){
+    for(int j=0; j<this->num; j++){
+      this->b[{i,j}]='.';
+    }
+  }
 }
